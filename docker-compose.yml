@@ -1,0 +1,34 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: smart-schedule-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123456
+      MYSQL_DATABASE: smart_schedule
+      MYSQL_USER: smartuser
+      MYSQL_PASSWORD: smartpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - smart_schedule_data:/var/lib/mysql
+      - ./backend/sql:/docker-entrypoint-initdb.d
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - smart-schedule-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: smart-schedule-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - smart_schedule_data:/data
+    networks:
+      - smart-schedule-network
+
+volumes:
+  smart_schedule_data:
+
+networks:
+  smart-schedule-network:
+    driver: bridge

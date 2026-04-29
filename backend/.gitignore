@@ -1,0 +1,46 @@
+# Maven
+target/
+*.jar
+*.war
+*.ear
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+.vscode/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Application
+application-local.yml
+application-dev.yml
+application-prod.yml
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Package files
+*.tar.gz
+*.rar
+*.zip
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Druid监控页面（敏感）
+/druid/*

@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: smart-schedule
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/smart_schedule?useUnicode=true&characterEncoding=UTF-8&connectionCollation=utf8mb4_unicode_ci&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
+
+  sql:
+    init:
+      mode: never
+      data-locations: file:sql/test_data.sql
+      encoding: UTF-8
+      continue-on-error: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+jwt:
+  secret: SmartScheduleSecretKey2024ForJWTTokenGenerationMustBeLongEnough
+  access-token-validity: 86400000
+  refresh-token-validity: 604800000
+
+nlp:
+  confidence-threshold: 0.7
+
+logging:
+  level:
+    com.smartschedule: debug
+    org.springframework.security: warn
